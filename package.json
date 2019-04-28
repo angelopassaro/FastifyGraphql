@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/**/*.test.js",
+    "start": "fastify start app.js",
+    "dev": " fastify start -l info -P app.js",
+    "nodemon-dev": "nodemon --exec npm run dev"
+  },
+  "keywords": [],
+  "author": "Angelo Passaro",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.3.0",
+    "fastify-autoload": "^0.8.0",
+    "fastify-cli": "^1.0.0",
+    "fastify-compress": "^0.9.0",
+    "fastify-cors": "^2.1.2",
+    "fastify-gql": "^1.1.0",
+    "fastify-helmet": "^3.0.0",
+    "fastify-plugin": "^1.5.0",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.11",
+    "sequelize": "^5.7.6",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {
+    "tap": "^13.1.0"
+  }
+}
