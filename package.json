@@ -24,6 +24,7 @@
     "fastify-gql": "^1.1.0",
     "fastify-helmet": "^3.0.0",
     "fastify-plugin": "^1.5.0",
+    "graphql-tools": "^4.0.4",
     "mysql2": "^1.6.5",
     "nodemon": "^1.18.11",
     "sequelize": "^5.7.6",
