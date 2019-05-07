@@ -1,4 +1,4 @@
-const typeDefs = `type User {
+type User {
     id: ID!
     name: String!
     email: String!
@@ -8,6 +8,4 @@ const typeDefs = `type User {
   type AuthPayload {
     token: String
     user: User
-  }`
-
-module.exports = typeDefs;
+  }
