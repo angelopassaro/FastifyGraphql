@@ -1,5 +1,3 @@
-// BUONA
-
 const bcrypt = require('bcrypt')
 
 async function signup(parent, args, context, info) {
