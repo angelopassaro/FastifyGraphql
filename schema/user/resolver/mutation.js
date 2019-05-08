@@ -4,7 +4,7 @@ async function signup(parent, args, context, info) {
     const password = await bcrypt.hash(args.password, 10)
     const user = await context.prisma.createUser({ ...args, password })
 
-    const token = fastify.jwt.sign({ userId: user.id }, APP_SECRET)
+    const token = context.fastify.jwt.sign({ userId: user.id })
 
     return {
         token,
@@ -23,7 +23,7 @@ async function login(parent, args, context, info) {
         throw new Error('Invalid password')
     }
 
-    const token = fastify.jwt.sign({ userId: user.id }, APP_SECRET)
+    const token = context.fastify.jwt.sign({ userId: user.id })
 
     return {
         token,
@@ -33,19 +33,18 @@ async function login(parent, args, context, info) {
 
 
 
-//function post(parent, args, context, info) {
+function post(parent, args, context, info) {
+    const userId = context.fastify.getUserId(context)
+    return context.prisma.createLink({
+        url: args.url,
+        description: args.description,
+        postedBy: { connect: { id: userId } },
+    })
 
-//   const userId = getUserId(context)
-//   return context.prisma.createLink({
-//       url: args.url,
-//       description: args.description,
-//       postedBy: { connect: { id: userId } },
-//   })
-
-//}
+}
 
 module.exports = {
     signup,
     login,
-    // post
+    post
 }

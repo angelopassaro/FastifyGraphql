@@ -15,11 +15,21 @@ module.exports = function (fastify, opts, next) {
     options: Object.assign({}, opts)
   })
 
+  fastify.register(require('fastify-jwt'), {
+    secret: 'supersecret'
+  })
+
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: { prisma }
+    context: request => {
+      return {
+        request,
+        prisma,
+        fastify
+      }
+    },
   });
 
   fastify.register(server.createHandler());
