@@ -41,3 +41,4 @@ module.exports = {
     typeDefs: mergeTypes(typesArray, { all: true }),
     resolvers: { 'Query': resolver['Query'][0], 'Mutation': resolver['Mutation'][0] }
 }
+
