@@ -4,11 +4,10 @@ const fp = require('fastify-plugin')
 
 module.exports = fp(async function (fastify, opts) {
   fastify.decorate('getUserId', (context) => {
-    console.log(context.request)
-    const Authorization = context.request.get('Authorization')
+    const Authorization = context.request.headers['Authorization']
     if (Authorization) {
       const token = Authorization.replace('Bearer ', '')
-      const { userId } = jwt.verify(token, APP_SECRET)
+      const { userId } = jwt.verify(token)
       return userId
     }
 
