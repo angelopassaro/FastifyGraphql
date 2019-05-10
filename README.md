@@ -1,5 +1,5 @@
 ## Example of server
 
-fastify(https://www.fastify.io/) + graphql(https://graphql.org/) + prisma(https://www.prisma.io/)
+[Fastify](https://www.fastify.io/) + [Graphql](https://graphql.org/) + [Prisma](https://www.prisma.io/)
 
 In Progress
