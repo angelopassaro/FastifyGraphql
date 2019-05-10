@@ -1,8 +1,3 @@
-Example of backend with fastify + sequelize + graphQL
+~~Example of backend with fastify + sequelize + graphQL~~
 
-
-
-
-## TODO
-
-Creare un file di conf per il db
+[Project](https://github.com/angelopassaro/FastifyGraphql/tree/prisma)
