@@ -19,15 +19,15 @@ module.exports = function (fastify, opts, next) {
     secret: 'supersecret'
   })
 
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    debug: true,
     context: request => {
       return {
-        request,
         prisma,
-        fastify
+        ...fastify,
+        ...request
       }
     },
   });

@@ -25,21 +25,8 @@ listFiles.forEach((file) => {
     result.push(require(file))
 })
 
-/*
-let resolver = result.reduce((a, b) => {
-    Object.keys(b).forEach((k) => {
-        console.log(b[k])
-        if (a[k]) {
-            a[k].push(b[k]);
-        } else {
-            a[k] = [b[k]];
-        }
-    })
-    return a;
-}, {});
-*/
 
-let resolver = result.reduce((a, b) => {
+let schema = result.reduce((a, b) => {
     Object.keys(b).forEach((k) => {
         if (Object.entries(b[k]).length !== 0 && b[k] !== Object) {
             if (a[k]) {
@@ -52,8 +39,23 @@ let resolver = result.reduce((a, b) => {
     return a;
 }, {});
 
+let resolvers = []
+/*
+if (schema['extra'])
+    Object.entries(schema['extra'][0]).forEach((f) => {
+        resolvers[f[0]] = f[1]
+    })
+    */
+
+if (schema['extra']) {
+    resolvers = Object.assign({}, resolvers, schema['extra'][0])
+}
+
+resolvers = Object.assign({}, resolvers, { 'Query': schema['Query'][0] })
+resolvers = Object.assign({}, resolvers, { 'Mutation': schema['Mutation'][0] })
+
 module.exports = {
     typeDefs: mergeTypes(typesArray, { all: true }),
-    resolvers: { 'Query': resolver['Query'][0], 'Mutation': resolver['Mutation'][0] }
+    resolvers: resolvers
 }
 
