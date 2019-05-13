@@ -16,7 +16,10 @@ module.exports = function (fastify, opts, next) {
   })
 
   fastify.register(require('fastify-jwt'), {
-    secret: 'supersecret'
+    secret: 'supersecret', //change
+    sign: {
+      algorithm: 'HS512'
+    }
   })
 
   const server = new ApolloServer({

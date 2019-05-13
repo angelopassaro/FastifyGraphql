@@ -23,7 +23,14 @@ async function login(parent, args, context, info) {
         throw new Error('Invalid password')
     }
 
-    const token = context.jwt.sign({ userId: user.id })
+    const token = context.jwt.sign(
+        {
+            userId: user.id
+        },
+        {
+            expiresIn: 86400 //expires in 24 hours
+        }
+    )
 
     return {
         token,
