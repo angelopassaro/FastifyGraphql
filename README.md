@@ -1,3 +1,5 @@
-~~Example of backend with fastify + sequelize + graphQL~~
+## Example of server
 
-[Project](https://github.com/angelopassaro/FastifyGraphql/tree/prisma)
+[Fastify](https://www.fastify.io/) + [Graphql](https://graphql.org/) + [Prisma](https://www.prisma.io/)
+
+In Progress

@@ -1,0 +1,5 @@
+type Query {
+    feed: [Link!]!
+    postedBy: User!
+    links:[Link!]!
+  }

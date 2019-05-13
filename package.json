@@ -8,29 +8,35 @@
   },
   "scripts": {
     "test": "tap test/**/*.test.js",
-    "start": "fastify start app.js",
-    "dev": " fastify start -l info -P app.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -l info -P app.js",
     "nodemon-dev": "nodemon --exec npm run dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelopassaro/FastifyGraphql.git"
+  },
   "keywords": [],
-  "author": "Angelo Passaro",
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelopassaro/FastifyGraphql/issues"
+  },
+  "homepage": "https://github.com/angelopassaro/FastifyGraphql#readme",
   "dependencies": {
+    "apollo-server-fastify": "^2.5.0",
+    "bcrypt": "^3.0.6",
     "fastify": "^2.3.0",
     "fastify-autoload": "^0.8.0",
     "fastify-cli": "^1.0.0",
-    "fastify-compress": "^0.9.0",
-    "fastify-cors": "^2.1.2",
     "fastify-gql": "^1.1.0",
-    "fastify-helmet": "^3.0.0",
+    "fastify-jwt": "^0.10.0",
     "fastify-plugin": "^1.5.0",
-    "graphql-tools": "^4.0.4",
-    "mysql2": "^1.6.5",
-    "nodemon": "^1.18.11",
-    "sequelize": "^5.7.6",
-    "sequelize-cli": "^5.4.0"
+    "merge-graphql-schemas": "^1.5.8",
+    "nodemon": "^1.19.0",
+    "prisma-client-lib": "^1.30.4"
   },
   "devDependencies": {
-    "tap": "^13.1.0"
+    "tap": "^13.1.3"
   }
 }
