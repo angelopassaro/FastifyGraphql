@@ -17,7 +17,7 @@ fs.readdirSync(__dirname).forEach((file) => {
 })
 
 // merge graphql types
-const typesArray = fileLoader(path.join(__dirname, '/**/model/*.graphql'), { recursive: true })
+const typesArray = fileLoader(path.join(__dirname, '/**/model/*.graphql'))
 const result = []
 
 //import resolver (query and mutation)
