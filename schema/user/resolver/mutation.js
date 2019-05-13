@@ -4,7 +4,7 @@ async function signup(parent, args, context, info) {
     const password = await bcrypt.hash(args.password, 10)
     const user = await context.prisma.createUser({ ...args, password })
 
-    const token = context.jwt.sign({ userId: user.id })
+    const token = context.sign(user.id)
 
     return {
         token,
@@ -23,14 +23,7 @@ async function login(parent, args, context, info) {
         throw new Error('Invalid password')
     }
 
-    const token = context.jwt.sign(
-        {
-            userId: user.id
-        },
-        {
-            expiresIn: 86400 //expires in 24 hours
-        }
-    )
+    const token = context.sign(user.id)
 
     return {
         token,
@@ -40,6 +33,7 @@ async function login(parent, args, context, info) {
 
 
 function post(parent, args, context, info) {
+    console.log(context)
     const userId = context.getUserId(context)
     return context.prisma.createLink({
         url: args.url,
