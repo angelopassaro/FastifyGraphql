@@ -19,6 +19,12 @@ fs.readdirSync(__dirname).forEach((file) => {
 // merge graphql types
 const typesArray = fileLoader(path.join(__dirname, '/**/model/*.graphql'))
 const result = []
+let resolvers = []
+let extra = {}
+let query = {}
+
+
+
 
 //import resolver (query and mutation)
 listFiles.forEach((file) => {
@@ -39,19 +45,22 @@ let schema = result.reduce((a, b) => {
     return a;
 }, {});
 
-let resolvers = []
-/*
-if (schema['extra'])
-    Object.entries(schema['extra'][0]).forEach((f) => {
-        resolvers[f[0]] = f[1]
-    })
-    */
 
-if (schema['extra']) {
-    resolvers = Object.assign({}, resolvers, schema['extra'][0])
+// split query from extra , extra is used for relations
+
+Object.entries(schema['Query'][0]).forEach((k) => {
+    if (Object.keys(k[1]).length === 1) {
+        extra[k[0]] = k[1]
+    } else {
+        query[k[0]] = k[1]
+    }
+})
+
+if (!(Object.entries(extra).length === 0 && extra.constructor === Object)) {
+    resolvers = Object.assign({}, resolvers, extra)
 }
 
-resolvers = Object.assign({}, resolvers, { 'Query': schema['Query'][0] })
+resolvers = Object.assign({}, resolvers, { 'Query': query })
 resolvers = Object.assign({}, resolvers, { 'Mutation': schema['Mutation'][0] })
 
 module.exports = {
