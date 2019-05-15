@@ -37,7 +37,9 @@ module.exports = function (fastify, opts, next) {
     },
   });
 
+  // for subscription
   server.installSubscriptionHandlers(fastify.server)
+
   fastify.register(server.createHandler());
 
   // Make sure to call next when done
