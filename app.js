@@ -8,6 +8,7 @@ const { ApolloServer } = require('apollo-server-fastify');
 
 const { typeDefs, resolvers } = require('./schema/index')
 
+
 module.exports = function (fastify, opts, next) {
 
   fastify.register(AutoLoad, {
@@ -23,6 +24,7 @@ module.exports = function (fastify, opts, next) {
   })
 
   const server = new ApolloServer({
+    subscriptionsEndpoint: 'ws://localhost:3000/graphql',
     typeDefs,
     resolvers,
     debug: true,
@@ -35,6 +37,7 @@ module.exports = function (fastify, opts, next) {
     },
   });
 
+  server.installSubscriptionHandlers(fastify.server)
   fastify.register(server.createHandler());
 
   // Make sure to call next when done

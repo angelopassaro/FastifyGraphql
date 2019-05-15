@@ -33,7 +33,6 @@ async function login(parent, args, context, info) {
 
 
 function post(parent, args, context, info) {
-    console.log(context)
     const userId = context.getUserId(context)
     return context.prisma.createLink({
         url: args.url,

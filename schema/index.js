@@ -56,15 +56,22 @@ Object.entries(schema['Query'][0]).forEach((k) => {
     }
 })
 
+// if extra exist merge in resolver
 if (!(Object.entries(extra).length === 0 && extra.constructor === Object)) {
     resolvers = Object.assign({}, resolvers, extra)
+}
+
+// if subscription exist merge in resolver
+if (!(Object.entries(schema['Subscription'][0]).length === 0 && schema['Subscription'][0].constructor === Object)) {
+    resolvers = Object.assign({}, resolvers, { 'Subscription': schema['Subscription'][0] })
 }
 
 resolvers = Object.assign({}, resolvers, { 'Query': query })
 resolvers = Object.assign({}, resolvers, { 'Mutation': schema['Mutation'][0] })
 
+
 module.exports = {
     typeDefs: mergeTypes(typesArray, { all: true }),
-    resolvers: resolvers
+    resolvers: resolvers,
 }
 

@@ -11,7 +11,7 @@ module.exports = fp(async function (fastify, opts) {
         userId: id
       },
       {
-        expiresIn: 60 //expires in 24 hours
+        expiresIn: 24 * 60 * 60 //expires in 24 hours
       }
     )
   })
