@@ -4,6 +4,7 @@ type Link {
   url: String!
   postedBy: User
   votes: [Vote!]!
+  createdAt: DateTime! @createdAt
 }
 
 type User {

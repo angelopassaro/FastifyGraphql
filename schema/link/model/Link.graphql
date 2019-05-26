@@ -5,3 +5,4 @@ type Link {
   postedBy: User
   votes: [Vote!]!
 }
+

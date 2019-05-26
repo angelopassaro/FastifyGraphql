@@ -181,7 +181,9 @@ export type LinkOrderByInput =
   | "description_ASC"
   | "description_DESC"
   | "url_ASC"
-  | "url_DESC";
+  | "url_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
 
 export type VoteOrderByInput = "id_ASC" | "id_DESC";
 
@@ -248,6 +250,14 @@ export interface LinkWhereInput {
   votes_every?: Maybe<VoteWhereInput>;
   votes_some?: Maybe<VoteWhereInput>;
   votes_none?: Maybe<VoteWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<LinkWhereInput[] | LinkWhereInput>;
   OR?: Maybe<LinkWhereInput[] | LinkWhereInput>;
   NOT?: Maybe<LinkWhereInput[] | LinkWhereInput>;
@@ -652,6 +662,14 @@ export interface LinkScalarWhereInput {
   url_not_starts_with?: Maybe<String>;
   url_ends_with?: Maybe<String>;
   url_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<LinkScalarWhereInput[] | LinkScalarWhereInput>;
   OR?: Maybe<LinkScalarWhereInput[] | LinkScalarWhereInput>;
   NOT?: Maybe<LinkScalarWhereInput[] | LinkScalarWhereInput>;
@@ -758,6 +776,7 @@ export interface Link {
   id: ID_Output;
   description: String;
   url: String;
+  createdAt: DateTimeOutput;
 }
 
 export interface LinkPromise extends Promise<Link>, Fragmentable {
@@ -774,6 +793,7 @@ export interface LinkPromise extends Promise<Link>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface LinkSubscription
@@ -792,6 +812,7 @@ export interface LinkSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface LinkNullablePromise
@@ -810,6 +831,7 @@ export interface LinkNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface User {
@@ -1154,6 +1176,7 @@ export interface LinkPreviousValues {
   id: ID_Output;
   description: String;
   url: String;
+  createdAt: DateTimeOutput;
 }
 
 export interface LinkPreviousValuesPromise
@@ -1162,6 +1185,7 @@ export interface LinkPreviousValuesPromise
   id: () => Promise<ID_Output>;
   description: () => Promise<String>;
   url: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface LinkPreviousValuesSubscription
@@ -1170,6 +1194,7 @@ export interface LinkPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   description: () => Promise<AsyncIterator<String>>;
   url: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -1273,6 +1298,16 @@ export type ID_Output = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
