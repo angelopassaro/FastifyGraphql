@@ -8,8 +8,3 @@ datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
     output: ../generated/prisma-client
-
-# hook post deploy forse non necessario viene eseguita già di default gerenate
-#hooks:
-#  post-deploy:
-#    - prisma generate

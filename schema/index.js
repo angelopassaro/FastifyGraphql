@@ -49,12 +49,13 @@ let schema = result.reduce((a, b) => {
 // split query from extra , extra is used for relations
 
 Object.entries(schema['Query'][0]).forEach((k) => {
-    if (Object.keys(k[1]).length === 1) {
-        extra[k[0]] = k[1]
-    } else {
+    if (Object.keys(k[1]).length === 0) {
         query[k[0]] = k[1]
+    } else {
+        extra[k[0]] = k[1]
     }
 })
+
 
 // if extra exist merge in resolver
 if (!(Object.entries(extra).length === 0 && extra.constructor === Object)) {

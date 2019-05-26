@@ -9,6 +9,6 @@ function links(parent, args, context) {
 
 module.exports = {
     feed,
-    links,
+    // links,
     User: { links: links }
 }

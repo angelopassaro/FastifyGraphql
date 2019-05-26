@@ -8,4 +8,5 @@ type User {
   name: String!
   email: String!
   links: [Link!]!
+  votes: [Vote!]!
 }
