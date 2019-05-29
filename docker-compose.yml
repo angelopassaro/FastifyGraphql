@@ -1,8 +1,8 @@
 version: '3.7'
 services:
   test-container:
-    # build: .
-    image: backend
+    build: .
+    #image: backend
     restart: always
     volumes:
       - .:/usr/src/app
